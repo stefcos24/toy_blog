@@ -34,3 +34,9 @@ class ArticleSerializer(serializers.ModelSerializer):
         writer = Writer.objects.get(user=user)
         validated_data["written_by"] = writer
         return super().create(validated_data)
+
+    def update(self, instance, validated_data):
+        instance.title = validated_data.get("title", instance.title)
+        instance.content = validated_data.get("content", instance.content)
+        instance.save()
+        return instance
