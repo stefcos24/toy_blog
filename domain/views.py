@@ -72,3 +72,13 @@ class ArticleApprovalAPIView(APIView):
                 status=status.HTTP_200_OK,
             )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ArticlesEditedAPIView(APIView):
+
+    def get(self, request):
+        articles = Article.objects.filter(
+            edited_by=request.user.writer, status__in=["approved", "rejected"]
+        )
+        serializer = ArticleSerializer(articles, many=True)
+        return Response(serializer.data)
