@@ -60,15 +60,15 @@ class ArticleCreateAPITestCase(AuthAPITestCase):
         self.assertEqual(response.data.get("content"), data.get("content"))
         self.assertEqual(response.data.get("status"), data.get("status"))
 
-
-class ArticleDetailAPITestCase(AuthAPITestCase):
-
     def test_article_create_api_bad(self):
         self.force_login_editor()
         url = reverse("article-create")
         data = {"title": "New Test Article"}
         response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+
+class ArticleDetailAPITestCase(AuthAPITestCase):
 
     def test_get_article_detail_api(self):
         url = reverse("article-detail", args=[1])
