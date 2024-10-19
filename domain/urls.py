@@ -5,6 +5,7 @@ from .views import (
     ArticleCreateAPIView,
     ArticleDetailAPIView,
     ArticleApprovalAPIView,
+    ArticlesEditedAPIView,
 )
 
 urlpatterns = [
@@ -23,5 +24,10 @@ urlpatterns = [
         "article-approval/",
         ArticleApprovalAPIView.as_view(),
         name="article-approval",
+    ),
+    path(
+        "articles-edited/",
+        ArticlesEditedAPIView.as_view(),
+        name="articles-edited",
     ),
 ]
