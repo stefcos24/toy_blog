@@ -40,3 +40,11 @@ class ArticleSerializer(serializers.ModelSerializer):
         instance.content = validated_data.get("content", instance.content)
         instance.save()
         return instance
+
+
+class ArticleApprovalSerializer(serializers.ModelSerializer):
+    status = serializers.ChoiceField(choices=["approved", "rejected"])
+
+    class Meta:
+        model = Article
+        fields = ["id", "status"]

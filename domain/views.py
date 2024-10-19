@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from domain.models import Article
-from domain.serializers import ArticleSerializer
+from domain.serializers import ArticleSerializer, ArticleApprovalSerializer
 
 
 # Create your views here.
@@ -43,4 +43,32 @@ class ArticleDetailAPIView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ArticleApprovalAPIView(APIView):
+
+    def get(self, request):
+        articles = Article.objects.filter(status="draft")
+        serializer = ArticleSerializer(articles, many=True)
+        return Response(serializer.data)
+
+    def put(self, request):
+        article = get_object_or_404(Article, id=request.data["id"])
+
+        if not request.user.writer.is_editor:
+            return Response(
+                {"detail": "Not authorized"}, status=status.HTTP_403_FORBIDDEN
+            )
+
+        status_action = request.data.get("status")
+        serializer = ArticleApprovalSerializer(data=request.data)
+        if serializer.is_valid():
+            article.status = serializer.validated_data.get("status")
+            article.edited_by = request.user.writer
+            article.save()
+            return Response(
+                {"detail": f"Article {article.title} is {status_action}"},
+                status=status.HTTP_200_OK,
+            )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
