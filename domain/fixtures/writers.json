@@ -1,0 +1,52 @@
+[
+  {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "username": "editor_user",
+            "password": "pbkdf2_sha256$150000$QjTpJzXskglF$GQyTk/UsimGQtM5aYz3VXkI1+hWEC5r3C8QqEvGzOZ0=",
+            "email": "editor@example.com",
+            "first_name": "Editor",
+            "last_name": "User",
+            "is_staff": true,
+            "is_active": true,
+            "is_superuser": false,
+            "last_login": null,
+            "date_joined": "2024-10-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "username": "writer_user",
+            "password": "pbkdf2_sha256$150000$QjTpJzXskglF$GQyTk/UsimGQtM5aYz3VXkI1+hWEC5r3C8QqEvGzOZ0=",
+            "email": "writer@example.com",
+            "first_name": "Writer",
+            "last_name": "User",
+            "is_staff": false,
+            "is_active": true,
+            "is_superuser": false,
+            "last_login": null,
+            "date_joined": "2024-10-19T00:00:00Z"
+        }
+    },
+  {
+    "model": "domain.writer",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "is_editor": true,
+      "name": "User Editor"
+    }
+  },
+  {
+    "model": "domain.writer",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "is_editor": false,
+      "name": "User Writer"
+    }
+  }
+]

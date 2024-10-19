@@ -1,0 +1,74 @@
+[
+  {
+    "model": "domain.article",
+    "pk": 1,
+    "fields": {
+      "created_at": "2024-10-19 12:28:04.795043 +00:00",
+      "title": "Test Article 1",
+      "content": "This is a test article content 1.",
+      "status": "draft",
+      "written_by": 1,
+      "edited_by": null
+    }
+  },
+  {
+    "model": "domain.article",
+    "pk": 2,
+    "fields": {
+      "created_at": "2024-10-19 12:28:04.795043 +00:00",
+      "title": "Test Article 2",
+      "content": "Another test article content 2.",
+      "status": "draft",
+      "written_by": 1,
+      "edited_by": null
+    }
+  },
+  {
+    "model": "domain.article",
+    "pk": 3,
+    "fields": {
+      "created_at": "2024-10-19 12:28:04.795043 +00:00",
+      "title": "Test Article 3",
+      "content": "Another test article content 3.",
+      "status": "draft",
+      "written_by": 2,
+      "edited_by": null
+    }
+  },
+  {
+    "model": "domain.article",
+    "pk": 4,
+    "fields": {
+      "created_at": "2024-10-19 12:28:04.795043 +00:00",
+      "title": "Test Article 4",
+      "content": "Another test article content 4.",
+      "status": "draft",
+      "written_by": 2,
+      "edited_by": null
+    }
+  },
+  {
+    "model": "domain.article",
+    "pk": 5,
+    "fields": {
+      "created_at": "2024-10-19 12:28:04.795043 +00:00",
+      "title": "Test Article 5",
+      "content": "Another test article content 5.",
+      "status": "approved",
+      "written_by": 2,
+      "edited_by": 1
+    }
+  },
+  {
+    "model": "domain.article",
+    "pk": 6,
+    "fields": {
+      "created_at": "2024-10-19 12:28:04.795043 +00:00",
+      "title": "Test Article 6",
+      "content": "Another test article content 6.",
+      "status": "rejected",
+      "written_by": 2,
+      "edited_by": 1
+    }
+  }
+]
