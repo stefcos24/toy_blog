@@ -28,3 +28,9 @@ class ArticleSerializer(serializers.ModelSerializer):
             "edited_by",
         ]
         read_only_fields = ["written_by", "edited_by", "created_at"]
+
+    def create(self, validated_data):
+        user = self.context["request"].user
+        writer = Writer.objects.get(user=user)
+        validated_data["written_by"] = writer
+        return super().create(validated_data)
