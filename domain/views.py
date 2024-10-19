@@ -1,9 +1,11 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from domain.models import Article
+from domain.permissions import IsEditor
 from domain.serializers import ArticleSerializer, ArticleApprovalSerializer
 
 
@@ -17,6 +19,7 @@ class DashboardAPIView(APIView):
 
 
 class ArticleCreateAPIView(APIView):
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         serializer = ArticleSerializer(
@@ -29,6 +32,11 @@ class ArticleCreateAPIView(APIView):
 
 
 class ArticleDetailAPIView(APIView):
+
+    def get_permissions(self):
+        if self.request.method == "PUT":
+            return [IsAuthenticated()]
+        return []
 
     def get(self, request, article_id):
         article = get_object_or_404(Article, id=article_id)
@@ -47,6 +55,7 @@ class ArticleDetailAPIView(APIView):
 
 
 class ArticleApprovalAPIView(APIView):
+    permission_classes = [IsAuthenticated, IsEditor]
 
     def get(self, request):
         articles = Article.objects.filter(status="draft")
@@ -75,6 +84,7 @@ class ArticleApprovalAPIView(APIView):
 
 
 class ArticlesEditedAPIView(APIView):
+    permission_classes = [IsAuthenticated, IsEditor]
 
     def get(self, request):
         articles = Article.objects.filter(
