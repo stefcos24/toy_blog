@@ -1,8 +1,8 @@
 build:
-	docker-compose up --build -d
+	docker-compose --env-file .docker.env up --build -d
 
 up:
-	docker-compose up -d
+	docker-compose --env-file .docker.env up -d
 
 ssh:
 	docker exec -it toyblog /bin/bash

@@ -51,6 +51,7 @@ Thumbs.db
 
 # Environment variables
 .env
+.docker.env
 .coverage
 
 ### IntelliJ IDEA ###

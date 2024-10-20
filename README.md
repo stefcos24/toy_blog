@@ -39,7 +39,7 @@ $ nox -s lint tests
 ```
 
 ### Local environment configuration
-
+- Make .env file in root directory
 ```bash
 # Controls if application is started in debug mode.
 # Supported values: True, False
@@ -49,7 +49,7 @@ DEBUG=True
 SECRET_KEY="django-insecure-r_!-g^d#6kkf%yxxj0_-8qq0#i6)9*@g4&=w(+0^zo!gk**!5+"
 
 # Comma-separated list of host name values.
-ALLOWED_HOSTS=localhost
+ALLOWED_HOSTS="localhost,127.0.0.1,0.0.0.0"
 
 # Database credentials
 DB_NAME=toydb
@@ -60,7 +60,7 @@ DB_PORT=5432
 ```
 
 ### Docker environment configuration
-
+- Make .docker.env file in root directory
 ```bash
 # Controls if application is started in debug mode.
 # Supported values: True, False
@@ -70,7 +70,7 @@ DEBUG=True
 SECRET_KEY="django-insecure-r_!-g^d#6kkf%yxxj0_-8qq0#i6)9*@g4&=w(+0^zo!gk**!5+"
 
 # Comma-separated list of host name values.
-ALLOWED_HOSTS=localhost
+ALLOWED_HOSTS="localhost,127.0.0.1,0.0.0.0"
 
 # Database credentials
 DB_NAME=toydb
