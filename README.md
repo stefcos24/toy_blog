@@ -19,7 +19,7 @@ $ pipx install poetry
 ```bash
 $ poetry shell
 ```
-- Install packages needed for car-repair-shop
+- Install packages needed for toy-blog
 ```bash
 $ poetry install
 ```
