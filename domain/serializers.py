@@ -48,3 +48,9 @@ class ArticleApprovalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
         fields = ["id", "status"]
+
+
+class DashboardSerializer(serializers.Serializer):
+    writer = serializers.CharField(source="name")
+    total_articles_written = serializers.IntegerField()
+    total_articles_last_30 = serializers.IntegerField()

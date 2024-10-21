@@ -1,10 +1,14 @@
+from datetime import timedelta
+
+from django.db.models import Count, Q
 from django.shortcuts import get_object_or_404
+from django.utils import timezone
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from domain.models import Article
+from domain.models import Article, Writer
 from domain.permissions import IsEditor
 from domain.serializers import ArticleSerializer, ArticleApprovalSerializer
 
@@ -13,8 +17,17 @@ from domain.serializers import ArticleSerializer, ArticleApprovalSerializer
 class DashboardAPIView(APIView):
 
     def get(self, request):
-        articles = Article.objects.all()
-        serializer = ArticleSerializer(articles, many=True)
+        now = timezone.now()
+        writers_summary = Writer.objects.annotate(
+            total_articles_written=Count("articles_written"),
+            total_articles_last_30=Count(
+                "articles_written",
+                filter=Q(
+                    articles_written__created_at__gte=now - timedelta(days=30)
+                ),
+            ),
+        )
+        serializer = DashboardSerializer(writers_summary, many=True)
         return Response(serializer.data)
 
 
