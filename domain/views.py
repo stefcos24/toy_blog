@@ -10,8 +10,11 @@ from rest_framework.views import APIView
 
 from domain.models import Article, Writer
 from domain.permissions import IsEditor
-from domain.serializers import ArticleSerializer, ArticleApprovalSerializer, \
-    DashboardSerializer
+from domain.serializers import (
+    ArticleSerializer,
+    ArticleApprovalSerializer,
+    DashboardSerializer,
+)
 
 
 # Create your views here.
